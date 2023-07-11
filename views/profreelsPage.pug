@@ -1,0 +1,31 @@
+extends profile.pug
+
+block content2
+    .postoptions
+                a(href=`/${profuser.username}`)
+                    span
+                        i.fi.fi-rr-grid
+                        | POSTS
+                if userloggedin.username === profuser.username
+                    a(href=`/${profuser.username}/saved`)
+                        span
+                            i.fi.fi-rr-bookmark
+                            | SAVED
+                else
+                    a(href=`/${profuser.username}/reels`)
+                        span.selectedpostoption
+                            i.fi.fi-rr-play-alt
+                            | REELS
+                a(href=`/${profuser.username}/tagged`)
+                    span
+                        i.fi.fi-rr-portrait
+                        | TAGGED
+    .postsgridcontainer.reelsgridcontainer
+        each post in reels
+            div.explorepost(data-postid=post._id)
+                if post.contentType === 'video'
+                    .videocon
+                        video(controls='true' loop='true' src=post.postPic)
+                        img.playbtn(width='50', height='50', src='https://img.icons8.com/ios-filled/50/play-button-circled--v1.png', alt='play-button-circled--v1')
+                else
+                    img(src=post.postPic, alt='')

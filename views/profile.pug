@@ -1,0 +1,86 @@
+extends base.pug
+
+block content 
+    .profilecontainer(data-userid=profuser._id)
+        .profiledetailsbox
+            if userloggedin.username === profuser.username
+                input(type="file" id="profbtn1")
+                label(for="profbtn1")
+                    .prof.userprof
+                        img(src=profuser.profilePic, alt='')
+            else
+                .prof.userprof
+                        img(src=profuser.profilePic, alt='')
+            .profiledetails
+                div
+                    span.profname #{profuser.username}
+                    if userloggedin.username === profuser.username
+                        a(href="/accounts/edit")
+                            span.editbtn Edit profile
+                        img(width='27' height='27' src='https://img.icons8.com/ios/50/settings--v1.png' alt='settings--v1')
+                    else
+                        -var profuserid = profuser._id.toString()
+                        -if(userloggedin.following.includes(profuserid))
+                            span.blue.editbtn.followbtn Following
+                        -else
+                            span.blue.followbtn Follow
+                        a(href=`` class='amessage')
+                            span.editbtn Message
+                        span.editbtn
+                            i.fi.fi-rr-user-add
+                        img(width='27', height='27', src='https://img.icons8.com/ios-glyphs/30/more.png', alt='more')
+                div
+                    span
+                        span.count #{posts.length}
+                        |  Posts
+                    span.showfollowers
+                        span.count.followerscount #{profuser.followers.length}
+                        |  Followers
+                    span.showfollowing
+                        span.count.followingcount #{profuser.following.length}
+                        |  Following
+                .username #{profuser.name}
+                .about #{profuser.bio}
+        block content2
+            .postoptions
+                a(href=`/${profuser.username}`)
+                    span.selectedpostoption
+                        i.fi.fi-rr-grid
+                        | POSTS
+                if userloggedin.username === profuser.username
+                    a(href=`/${profuser.username}/saved`)
+                        span
+                            i.fi.fi-rr-bookmark
+                            | SAVED
+                else
+                    a(href=`/${profuser.username}/reels`)
+                        span
+                            i.fi.fi-rr-play-alt
+                            | REELS
+                a(href=`/${profuser.username}/tagged`)
+                    span
+                        i.fi.fi-rr-portrait
+                        | TAGGED
+            if posts.length === 0
+                .nopostscontainer
+                    if userloggedin.username === profuser.username
+                        img(width='70', height='70', src='https://img.icons8.com/ios/50/apple-camera.png', alt='apple-camera' class="createpostbtn2")
+                        .boldone
+                            h1 Share Photos
+                        div When you share photos, they will appear on your profile.
+                        .bluebtn.createpostbtn2 Share your first photo
+                    else
+                        img(width='70', height='70', src='https://img.icons8.com/ios/50/apple-camera.png', alt='apple-camera')
+                        div
+                            h1 No Posts Yet
+            else
+                .postsgridcontainer
+                    each post in posts
+                        div.explorepost(data-postid=post._id)
+                            if post.contentType === 'video'
+                                .videocon
+                                    video(controls='true' loop='true' src=post.postPic)
+                                    img.playbtn(width='50', height='50', src='https://img.icons8.com/ios-filled/50/play-button-circled--v1.png', alt='play-button-circled--v1')
+                            else
+                                img(src=post.postPic, alt='')
+

@@ -1,0 +1,89 @@
+extends base.pug
+
+block content
+    .homepostscontainer
+        .postsholder
+            .storiescontainer
+                .story
+                    .prof
+                        img(src='images/rgv1.jpeg' alt='')
+                    .storyby janasenapartyupop
+                .story
+                    .prof
+                        img(src='images/rgv1.jpeg' alt='')
+                    .storyby janasenaparty pspk
+                .story
+                    .prof
+                        img(src='images/rgv1.jpeg' alt='')
+                    .storyby janasenaparty pspk
+            each post in posts
+                .homepost(data-postid=post._id)
+                    .postedby
+                        .prof
+                            img(src=post.postedBy.profilePic alt='')
+                        a(href=`/${post.postedBy.username}`)
+                            span.pagename #{post.postedBy.username}
+                        -time = Date.now()-Date.parse(post.createdAt)
+                        -if(time < 60*1000){
+                        -   timedisplay = `${Math.floor(time/1000)}s`
+                        -}else if(time < 60*60*1000){
+                        -    timedisplay = `${Math.floor(time/(60*1000))}m`
+                        -}else if(time < 24*60*60*1000){
+                        -    timedisplay = `${Math.floor(time/(60*60*1000))}h`
+                        -}else if(time < 7*24*60*60*1000){
+                        -    timedisplay = `${Math.floor(time/(24*60*60*1000))}d`
+                        -}else{
+                        -    timedisplay = `${Math.floor(time/(7*24*60*60*1000))}w`
+                        -}
+                        span.time &bull; #{timedisplay}
+                        img(width='22' height='22' src='https://img.icons8.com/ios-glyphs/30/more.png' alt='more')
+                    .postedcontent
+                        if post.contentType === 'video'
+                            .videocon
+                                video(loop='' controls='' src=post.postPic)
+                                img.playbtn(width='50', height='50', src='https://img.icons8.com/ios-filled/50/play-button-circled--v1.png', alt='play-button-circled--v1')
+                        else
+                            img(src=post.postPic, alt='')
+                    .icons
+                        if post.likedBy.includes(userloggedin._id)
+                            <i class="fi fi-rr-heart heart liked"></i>
+                        else 
+                            <i class="fi fi-rr-heart heart"></i>
+                        img(width='27' height='27' src='https://img.icons8.com/ios/50/speech-bubble--v1.png' alt='speech-bubble--v1' class="speech-bubble")
+                        img(width='27' height='27' src='https://img.icons8.com/ios/50/telegram-app.png' alt='telegram-app' class='share')
+                        if userloggedin.savedPosts.includes(`${post._id}`)
+                            <i class="fi fi-rr-bookmark bookmark saved"></i>
+                        else 
+                            <i class="fi fi-rr-bookmark bookmark"></i>
+                    .likescount #{post.likedBy.length} likes
+                    .posttext
+                        a(href=`/${post.postedBy.username}`)
+                            span #{post.postedBy.username}
+                        | #{post.caption}
+                    .morebtn more
+                    .commentscount View comments 
+                    .commentinputbox
+                        textarea.commentinput(id='' rows='1' placeholder='Add a comment...')
+                        span Post
+            if posts.length === 0
+                p Start following someone to see their posts here
+        .suggested
+            .user
+                .prof
+                    img(src=userloggedin.profilePic alt='')
+                div
+                    .pagename #{userloggedin.username}
+                    .username #{userloggedin.name}
+                .bluebtn Switch
+            .suggestedtext
+                span Suggested for you
+                span See All
+            .suggesteduserscontainer
+                each user in sugusers
+                    .user(data-userid=user._id)
+                        .prof
+                            img(src=user.profilePic alt='')
+                        div
+                            .pagename #{user.username}
+                            .username #{user.name}
+                        .bluebtn.followbtn2 Follow

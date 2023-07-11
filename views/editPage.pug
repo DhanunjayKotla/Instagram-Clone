@@ -1,0 +1,38 @@
+extends base.pug
+
+block content
+    .settingscontainer
+      p.heading Settings
+      .settingoptionsholder
+        .heading1 Edit profile
+        .edititems
+          input(type="file" id="profbtn2")
+          .left
+            label(for="profbtn2")
+              .prof.userprof
+                img(src=userloggedin.profilePic, alt='')
+          .right
+            div naa_saaav_nen_sastha
+            label(for="profbtn")
+              .bluebtn1 Change profile photo
+        .edititems
+          .left Website
+          .right
+            input(type='text', placeholder='Website', disabled='')
+            .inputtext
+              | Editing your links is only available on mobile. Visit the Instagram app and edit your profile to change the websites in your bio.
+        form(method="post" action="/api/user/updateDetails" class="userdetailsform")
+          .edititems
+            .left Bio
+            .right
+              textarea(rows='4', name="bio")
+              .inputtext 0 / 150
+          .edititems
+            .left Gender
+            .right
+              input.genderinput(type='text', name="gender", value="Male")
+              .inputtext This won&rsquo;t be part of your public profile.
+          .edititems
+            .left
+            .right
+              .blue#userdetailssubmitbtn Submit

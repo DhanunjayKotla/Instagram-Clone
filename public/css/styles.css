@@ -1,0 +1,1176 @@
+body{
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    user-select: none;
+}
+p{
+    margin: 0;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+h1{
+    margin: 0;
+}
+video::-webkit-media-controls {
+    display: none;
+}
+
+.signupBox, .loginBox{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+}
+.signupBox h1, .loginBox h1{
+    margin: 0;
+}
+.signupForm, .loginForm{
+    width: 40%;
+    padding: 10px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.signupForm input, .loginForm input{
+    height: 40px;
+    width: 80%;
+    border: 0;
+    border-bottom: 2px solid rgb(18, 170, 230);
+    margin: 5px;
+    background-color: transparent;
+    padding-left: 20px;
+    padding: 0;
+    outline: none;
+}
+.loginForm .sbtbtn, .signupForm .sbtbtn{
+    background-color: rgb(18, 170, 230);
+    border-radius: 5px;
+    margin-top: 20px; 
+    cursor: pointer;
+}
+.errmsg{
+    color: red;
+}
+
+.appcontainer{
+    height: 100vh;
+    display: flex;
+}
+
+.navbar{
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 17.5%;
+    padding: 40px 0px 30px 0px;
+    border-right: thin solid rgb(197, 193, 193);
+}
+.apptexticon{
+    margin: 0px 20px 30px 20px;
+}
+.navitem{
+    display: flex;
+    align-items: center;
+    margin: 4px 10px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+.navitem:hover{
+    background-color: whitesmoke;
+}
+.moreicon{
+    margin: auto 10px 0px 10px;
+}
+.navitem span{
+    margin-left: 15px;
+}
+.navitem .prof{
+    width: 27px;
+    height: 27px;
+    margin: 0;
+}
+
+.maincontainer{
+    flex-grow: 1;
+    position: relative;
+    overflow-y: scroll;
+}
+
+.inboxcontainer{
+    width: 100%;
+    display: flex;
+}
+.msgsidepop{
+    width: 34.2%;
+    height: 100%;
+    display: flex;
+    border-right: thin solid rgb(197, 193, 193);
+}
+.msgscontainer{
+    width: 65.8%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.msgscontainer .nopostscontainer .blue{
+    width: max-content;
+    margin: 0 auto;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+.msgscontainer .top{
+    padding: 10px 20px;
+    border-bottom: thin solid rgb(197, 193, 193);
+}
+.top .bluebtn img{
+    margin-right: 15px;
+}
+.top .prof{
+    width: 55px;
+    height: 55px;
+}
+.top .grpprof{
+    width: 40px;
+    height: 40px;
+}
+.top .grpprof1{
+    margin-top: -15px;
+}
+.top .grpprof2{
+    margin-left: -45px;
+    margin-top: 15px;
+    border: 1px solid white;
+}
+.top .pagename{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    margin: 10px 0px;
+    white-space: pre-line;
+    width: 600px;
+}
+
+.msgscontainer .middle{
+    flex-grow: 1;
+    padding: 0 15px;
+    overflow-y: scroll;
+}
+.middle .middlehead{
+    text-align: center;
+    margin: 20px 0px 50px 0px;
+}
+.middlehead .prof{
+    width: 130px;
+    height: 130px;
+    margin: 0 auto 10px auto;
+}
+.middlehead .grpprof1{
+    position: relative;
+    left: -20px;
+}
+.middlehead .grpprof2{
+    margin-top: -100px;
+    position: relative;
+    left: 20px;
+    border: 2px solid white;
+}
+.middlehead .username{
+    font-size: 1.5rem;
+}
+.middlehead .name{
+    color: gray;
+}
+.middlehead .editbtn{
+    margin: 20px auto 0 auto;
+    width: max-content;
+    cursor: pointer;
+}
+.msg{
+    background-color: rgb(238, 236, 236);
+    width: max-content;
+    max-width: 70%;
+    padding: 10px;
+    border-radius: 15px;
+}
+.mine{
+    background-color: rgb(18, 170, 230);
+    margin-left: auto;
+}
+.minepost{
+    margin-left: auto;
+}
+.msgcon .prof{
+    width: 40px;
+    height: 40px;
+}
+.msgcon{
+    display: flex;
+    align-items: end;
+    margin: 5px 0px;
+}
+.msgpost{
+    max-width: 250px;
+    max-height: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.msgpost img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.msgscontainer .bottom{
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+}
+.bottom .commentinputbox{
+    flex-grow: 1;
+    padding: 10px;
+    margin: 0px 20px;
+    border-radius: 25px;
+    border: thin solid rgb(197, 193, 193);
+}
+.bottom .commentinputbox img, .bottom .commentinputbox span{
+    margin-right: 15px;
+}
+.bottom .commentinputbox textarea:placeholder-shown ~ .inputbased{
+    display: block;
+}
+.bottom .inputbased{
+    display: none;
+}
+
+.sidepop{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: white;
+    width: 34.5%;
+    height: 100vh;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 5px 0px 10px 0px rgba(0,0,0, 0.2);
+    display: flex;
+    overflow: hidden;
+}
+.hidden{
+    display: none;
+}
+.sidepop .navbar, .msgsidepop .navbar{
+    width: max-content;
+} 
+.subcontainer{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.searchhead{
+    padding: 0px 15px;
+    border-bottom: thin solid rgb(197, 193, 193);
+}
+.searchhead p{
+    font-size: 1.7rem;
+    margin: 20px 0px;
+}
+.searchhead input{
+    border: none;
+    outline: none;
+    background-color: rgb(240, 239, 239);
+    border-radius: 5px;
+    width: 100%;
+    height: 40px;
+    font-size: 1rem;
+    padding-left: 15px;
+    box-sizing: border-box;
+    margin: 20px 0px;
+}
+.searchrescontainer{
+    flex-grow: 1;
+    padding: 20px 0px;
+    font-size: 0.9rem;
+}
+.searchrescontainer .user{
+    cursor: pointer;
+    padding: 10px 20px;
+}
+.searchrescontainer .user:hover{
+    background-color: rgb(245, 244, 244);
+}
+
+.msgheader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+}
+.msgheader p.username{
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+.msgheader1{
+    margin: 30px 0px;
+}
+.chatscontainer{
+    flex-grow: 1;
+    padding: 20px 0px;
+    font-size: 0.9rem;
+}
+.chatscontainer .prof{
+    width: 65px;
+    height: 65px;
+}
+.chatscontainer .grpprof{
+    width: 50px;
+    height: 50px;
+}
+.chatscontainer .grpprof{
+    margin-top: -15px;
+}
+.chatscontainer .grpprof2{
+    margin-left: -55px;
+    margin-top: 15px;
+    border: 1px solid white;
+}
+.chatscontainer .user{
+    padding: 10px 0px 10px 20px;
+}
+.chatscontainer .user:hover{
+    background-color: whitesmoke;
+}
+.chatscontainer .user .pagename{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    white-space: pre-line;
+}
+
+.notifheader{
+    font-size: 1.7rem;
+    margin: 20px;
+}
+.notifcontainer{
+    flex-grow: 1;
+    padding: 20px;
+    font-size: 0.9rem;
+}
+.notifcontainer .bluebtn{
+    background-color: rgb(18, 170, 230);
+    color: white;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 10px;
+}
+.notifcontainer .user{
+    margin-bottom: 20px;
+}
+
+.homepostscontainer{
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.postsholder{
+    width: 600px;
+    flex: 0 0 auto;
+    display: grid;
+}
+
+.storiescontainer{
+    display: flex;
+    margin-bottom: 30px;
+}
+.story{
+    margin-right: 20px;
+    width: 80px;
+}
+.story .prof{
+    height: 80px;
+    width: 80px;
+}
+.storyby{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.8rem;
+}
+
+.homepost{
+    width: 450px;
+    justify-self: center;
+    border-bottom: thin solid rgb(197, 193, 193);
+    padding: 15px 0px 20px 0px;
+    font-size: 0.9rem;
+}
+.postedby, .icons{
+    display: flex;
+    align-items: center;
+}
+.postedby > img, .saveicon{
+    margin-left: auto;
+    cursor: pointer;
+}
+.homepost .postedby .pagename{
+    margin-right: 5px;
+}
+.prof{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 15px;
+    flex: 0 0 auto;
+    cursor: pointer;
+}
+.prof img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.homepost .postedcontent{
+    /* max-height: 600px; */
+    background-color: black;
+    margin: 10px 0px;
+}
+.homepost .postedcontent img:not(.playbtn), .homepost .postedcontent video{
+    /* object-position: center; */
+    max-height: 600px;
+    width: 100%;
+    object-fit: contain;
+}
+.icons img:not(:last-of-type){
+    margin-right: 15px;
+    cursor: pointer;
+}
+.homepost .posttext{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin: 10px 0px;
+    white-space: pre-line;
+}
+.homepost .posttext span{
+    margin-right: 5px;
+}
+.morebtn{
+    cursor: pointer;
+    color: gray;
+}
+.pagename, .homepost .likescount, .posttext span{
+    font-weight: 600;
+    cursor: pointer;
+}
+.homepost .likescount{
+    margin-top: 10px;
+}
+.homepost .commentscount{
+    font-size: 0.9rem;
+    color: rgb(87, 85, 85);
+    margin: 10px 0px;
+    cursor: pointer;
+}
+.commentinputbox{
+    display: flex;
+    align-items: center;
+}
+.commentinputbox span{
+    display: none;
+    font-weight: 600;
+    color: rgb(74, 167, 204);
+    cursor: pointer;
+}
+.commentinput{
+    width: 90%;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    resize: none;
+}
+.icons .heart{
+    font-size: 27px;
+    margin-top: 6px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+.liked{
+    color: red;
+}
+.bookmark{
+    margin-left: auto;
+    font-size: 25px;
+    margin-top: 6px;
+    cursor: pointer;
+}
+.saved{
+    color: green;
+}
+
+.suggested{
+    width: 350px;
+    height: 300px;
+    flex: 0 0 auto;
+    font-size: 0.9em;
+}
+.user{
+    display: flex;
+    align-items: center;
+}
+.suggested .user .prof{
+    height: 55px;
+    width: 55px;
+    margin-right: 25px;
+}
+.bluebtn{
+    color:rgb(74, 167, 204);
+    margin-left: auto;
+}
+.user .username{
+    color: gray;
+    margin-top: 5px;
+}
+.suggestedtext{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0px;
+}
+.suggestedtext span:first-child{
+    color: gray;
+}
+.suggesteduserscontainer .prof{
+    width: 40px;
+    height: 40px;
+}
+.suggesteduserscontainer .user{
+    margin-bottom: 20px;
+}
+.followbtn2{
+    cursor: pointer;
+}
+
+.poppostcontainer, .poppostcontainer1{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+}
+.popcontentholder, .popcontentholder1{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.postpop{
+    height: 93%;
+    display: flex;
+    width: max-content;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.postpop .postedcontent{
+    max-width: 600px;
+    background-color: black;
+}
+.postpop .postedcontent img, .postpop .postedcontent video{
+    object-position: center;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.postpop .commentsbox{
+    background-color: white;
+    width: 500px;
+}
+.postpop .prof{
+    width: 35px;
+    height: 35px;
+    margin-right: 15px;
+    flex: 0 0 auto;
+}
+.commentsbox{
+    display: flex;
+    flex-direction: column;
+}
+.commentsbox .postedby{
+    padding: 15px 20px;
+    border-bottom: thin solid rgb(197, 193, 193);
+}
+.commentsbox .followbtn{
+    font-size: 0.9rem;
+    color:rgb(74, 167, 204);
+    font-weight: 600;
+    cursor: pointer;
+}
+.commentscontainer{
+    flex-grow: 1;
+    padding: 0px 20px;
+    overflow: scroll;
+}
+.commentscontainer::-webkit-scrollbar {
+    display: none;
+}
+.commentscontainer .noc{
+    text-align: center;
+}
+  
+.postdetails{
+    padding: 15px 20px;
+    border-top: thin solid rgb(197, 193, 193);
+    border-bottom: thin solid rgb(197, 193, 193);
+}
+.postdetails .likescount{
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 15px 0px 3px 0px;
+}
+.postdetails .postedat{
+    font-size: 0.7rem;
+} 
+.commentsbox .commentinputbox{
+    padding: 15px 20px;
+}
+.commentsbox .pagename{
+    font-size: 0.9em;
+}
+.comment{
+    display: flex;
+    padding: 10px 0px;
+}
+.comment .posttext{
+    font-size: 0.9em;
+    padding-top: 5px;
+    white-space: pre-line;
+}
+.commentfooter{
+    margin-top: 10px;
+}
+.commentfooter span{
+    font-size: 0.8rem;
+    color: gray;
+    margin-right: 15px;
+}
+.comment .likebtn{
+    padding: 10px 0px 0px 10px;
+    margin-left: auto;
+}
+.poppostcontainer .cross, .poppostcontainer1 .cross1{
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.createpostpop{
+    background-color: white;
+    width: 380px;
+    height: 500px;
+    text-align: center;
+    border-radius: 10px;
+    font-weight: 600;
+}
+.createpostpop div:first-child{
+    padding: 13px 0px;
+    border-bottom: thin solid rgb(197, 193, 193);
+    margin-bottom: 120px;
+}
+.createpostpop div:nth-child(2) > *{
+    margin-bottom: 20px;
+    display: inline-block;
+}
+.blue{
+    background-color: rgb(18, 170, 230);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: block;
+}
+
+.profilecontainer{
+    margin: 0px 8%;
+}
+.profiledetailsbox{
+    display: flex;
+    border-bottom: thin solid rgb(197, 193, 193);
+    padding: 30px 0px;
+    justify-content: center;
+}
+.profiledetailsbox .prof{
+    width: 170px;
+    height: 170px;
+    margin-right: 100px;
+    flex: 0 0 auto;
+}
+.profiledetails > div{
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.profiledetails div:first-child span{
+    margin-right: 20px;
+}
+.profiledetails div:first-child{
+    margin-bottom: 30px;
+}
+.profiledetails div:nth-child(2) > span{
+    margin-right: 30px;
+}
+.profiledetails .profname{
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+.profiledetails .blue{
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+.editbtn{
+    background-color: rgb(236, 234, 234);
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: black;
+}
+.profiledetails .count, .profiledetails .username{
+    font-weight: 600;
+}
+.profiledetails .about{
+    white-space: pre-line;
+}
+.profilecontainer .postoptions{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profilecontainer .postoptions span{
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 20px 0px;
+    display: flex;
+    align-items: center;
+    color: gray;
+    box-sizing: border-box;
+    border-top: 1px solid transparent;
+}
+.profilecontainer .postoptions span i{
+    margin-right: 5px;
+}
+.profilecontainer .postoptions a:not(:last-of-type){
+    margin-right: 50px;
+}
+.selectedpostoption{
+    border-top: 1px solid black !important;
+    color: black !important;
+}
+
+.nopostscontainer{
+    width: max-content;
+    margin: 70px auto;
+    text-align: center;
+}
+.nopostscontainer .bluebtn{
+    font-weight: 600;
+    cursor: pointer;
+}
+.nopostscontainer img{
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+.nopostscontainer div{
+    margin-bottom: 15px;
+}
+
+.settingscontainer .heading{
+    font-size: 1.5rem;
+    padding: 25px;
+}
+.settingoptionsholder{
+    width: 880px;
+    border: thin solid rgb(197, 193, 193);
+    margin: 0 auto;
+    padding-left: 50px;
+}
+.settingoptionsholder .heading1{
+    font-size: 1.4rem;
+    padding: 30px 0px;
+}
+.edititems{
+    display: flex;
+    margin-bottom: 30px;
+}
+.edititems .left{
+    margin-right: 40px;
+    width: 105px;
+    display: flex;
+    justify-content: end;
+    font-weight: 600;
+}
+.edititems .right{
+    width: 380px;
+}
+.edititems .right input, .edititems .right textarea{
+    width: 100%;
+}
+.edititems  .left .prof{
+    margin: 0px;
+}
+.edititems .right .inputtext{
+    font-size: 0.8rem;
+    margin-top: 7px;
+}
+.right .blue{
+    width: max-content;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.bluebtn1{
+    color:rgb(18, 170, 230);
+    font-weight: 600;
+    margin-top: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.genderpop{
+    background-color: white;
+    width: 500px;
+    border-radius: 10px;
+}
+.genderpop .heading{
+    text-align: center;
+    padding: 10px 0px;
+    border-bottom: thin solid rgb(197, 193, 193);
+    font-weight: 600;
+}
+.genderpop .body{
+    padding: 20px;
+}
+.genderpop .body label{
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-left: 4px;
+}
+.genderpop .body .blue{
+    text-align: center;
+    margin-top: 20px;
+}
+
+#profbtn1, #profbtn2, #postimginput{
+    display: none;
+}
+
+.croppostimgpop{
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.croppostimgpop .heading{
+    padding: 7px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+    border-bottom: thin solid rgb(197, 193, 193);
+}
+.croppostimgpop .bluebtn{
+    margin-left: 0;
+    cursor: pointer;
+}
+.croppostimgpop .imgholder{
+    width: 470px;
+    height: 450px; 
+}
+.croppostimgpop .imgholder img{
+    max-width: 100%;
+    display: block;
+}
+.croppostimgpop .imgholder video{
+    max-width: 100%;
+    height: 100%;
+    object-position: center;
+}
+.croppostimgpop .body{
+    flex: 1;
+    display: flex;
+}
+.captioninputsholder{
+    width: 350px;
+    border-left: thin solid rgb(197, 193, 193);
+}
+.captioninputsholder .prof{
+    width: 40px;
+    height: 40px;
+}
+.captioninputsholder .user{
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px 15px;
+}
+.captioninputsholder textarea{
+    width: 100%;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    resize: none;
+    padding-left: 15px;
+}
+.captioninputsholder input{
+    font-size: 1rem;
+    width: 100%;
+    outline: none;
+    padding: 10px 15px;
+    border: thin solid rgb(197, 193, 193);
+    border-left: 0;
+}
+.captioninputsholder > div:not(:first-of-type){
+    padding: 10px 15px;
+    border-bottom: thin solid rgb(197, 193, 193);
+}
+.croppostimgpop .aspecticon{
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    padding: 9px 5.5px 5px 5px;
+    position: absolute;
+    top: 90%;
+    left: 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.croppostimgpop .aspectcontainer{
+    background-color: rgb(0, 0, 0, 0.6);
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    border-radius: 10px;
+    display: none;
+}
+.croppostimgpop .aspectcontainer div{
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+}
+.croppostimgpop .aspectcontainer i{
+    font-size: 1.2rem;
+    margin-left: 15px;
+}
+.croppostimgpop .aspectcontainer > div:not(:last-child){
+    border-bottom: thin solid white;
+}
+
+.postsgridcontainer{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 315px;
+    grid-gap: 5px;
+}
+.postsgridcontainer div{
+    cursor: pointer;
+}
+.postsgridcontainer div img, .postsgridcontainer div video{
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+}
+.explorecontainer{
+    padding: 25px 70px;
+}
+.reelsgridcontainer{
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 360px;
+}
+
+.msgpopbtn{
+    cursor: pointer;
+}
+.msgpop{
+    background-color: white;
+    width: 600px;
+    height: 450px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.msgpop .heading{
+    padding: 20px 0;
+    font-weight: 600;
+    text-align: center;
+}
+.msgpop .inputholder{
+    border-top: thin solid rgb(197, 193, 193);
+    border-bottom: thin solid rgb(197, 193, 193);
+    display: flex;
+    padding: 10px 0;
+}
+.msgpop .label{
+    padding: 0 10px;
+    align-self: center;
+}
+.labelside{
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 10px;
+}
+.msgpop input{
+    min-width: 30%;
+    height: 30px;
+    border: none;
+    outline: none;
+    flex-grow: 1;
+}
+.msgpop .rescontainer{
+    flex-grow: 1;
+    overflow-y: scroll;
+    padding: 15px 0px;  
+}
+.msgpop .rescontainer .user{
+    cursor: pointer;
+    padding: 10px 0px 10px 20px;
+    font-size: 0.9rem;
+}
+.msgpop .rescontainer .user:hover{
+    background-color: whitesmoke;
+}
+.msgpop .selecteduser{
+    background-color: rgba(18, 170, 230, 0.1);
+    color: rgb(18, 170, 230);
+    padding: 0 5px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    width: max-content;
+    margin-right: 5px;
+}
+.msgpop .selecteduser i{
+    font-size: 1.1rem;
+    margin-top: 6px;
+    cursor: pointer;
+}
+.msgpop .chatbtncontainer{
+    margin: 15px;
+    text-align: center;
+}
+
+.notifpopcontainer{
+    width: 400px;
+    background-color: rgba(255, 255, 255, 0.9);
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 1px solid rgb(243, 241, 241);
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.notifpopcontainer .head{
+    display: flex;
+    align-items: center;
+}
+.notifpopcontainer .head span{
+    margin-left: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+.notifpopcontainer .body{
+    margin: 10px 0px 5px 4px;
+}
+
+.showfollowers, .showfollowing{
+    cursor: pointer;
+}
+.followpop{
+    width: 400px;
+    height: 400px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.followpop .heading{
+    text-align: center;
+    border-bottom: thin solid rgb(197, 193, 193);
+    padding: 15px 0px;
+    font-weight: 600;
+}
+.followpop .body{
+    overflow-y: scroll;
+    flex-grow: 1;
+}
+.followpop .body span{
+    display: block;
+    text-align: center;
+}
+.followpop .body .user{
+    padding: 10px 20px;
+    font-size: 0.9rem;
+}
+
+.restrict, .loading{
+    color: white;
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+@media screen and (max-width: 1300px) {
+    .restrict{
+        display: flex;
+    }
+    .appcontainer{
+        display: none;
+    }
+}
+.loading{
+    background-color: rgba(255, 255, 255, 0.5);
+    display: none;
+}
+.videocon{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.playbtn{
+    height: 50px !important;
+    width: 50px !important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
