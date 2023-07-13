@@ -15,10 +15,12 @@ $(document).ready(async function () {
 function createchathtml(chat) {
 
     var latestmsg = '';
-    if (chat.latestmsg.sender._id === userloggedin._id) {
-        latestmsg = chat.latestmsg.post === true ? 'Sent an attachment' : `You: ${chat.latestmsg.content}`
-    } else {
-        latestmsg = chat.latestmsg.post === true ? 'Received an attachment' : `${chat.latestmsg.sender.username}: ${chat.latestmsg.content}`
+    if (chat.latestmsg) {
+        if (chat.latestmsg.sender._id === userloggedin._id) {
+            latestmsg = chat.latestmsg.post === true ? 'Sent an attachment' : `You: ${chat.latestmsg.content}`
+        } else {
+            latestmsg = chat.latestmsg.post === true ? 'Received an attachment' : `${chat.latestmsg.sender.username}: ${chat.latestmsg.content}`
+        }
     }
 
     if (chat.isgroupchat === false) {

@@ -6,21 +6,22 @@ block content
             .storiescontainer
                 .story
                     .prof
-                        img(src='images/rgv1.jpeg' alt='')
+                        img(src='images/pspkprof.jpeg' alt='')
                     .storyby janasenapartyupop
                 .story
                     .prof
-                        img(src='images/rgv1.jpeg' alt='')
+                        img(src='images/pspkprof.jpeg' alt='')
                     .storyby janasenaparty pspk
                 .story
                     .prof
-                        img(src='images/rgv1.jpeg' alt='')
+                        img(src='images/pspkprof.jpeg' alt='')
                     .storyby janasenaparty pspk
             each post in posts
                 .homepost(data-postid=post._id)
                     .postedby
-                        .prof
-                            img(src=post.postedBy.profilePic alt='')
+                        a(href=`/${post.postedBy.username}`)
+                            .prof
+                                img(src=post.postedBy.profilePic alt='')
                         a(href=`/${post.postedBy.username}`)
                             span.pagename #{post.postedBy.username}
                         -time = Date.now()-Date.parse(post.createdAt)
@@ -81,9 +82,11 @@ block content
             .suggesteduserscontainer
                 each user in sugusers
                     .user(data-userid=user._id)
-                        .prof
-                            img(src=user.profilePic alt='')
+                        a(href=`/${user.username}`)
+                            .prof
+                                img(src=user.profilePic alt='')
                         div
-                            .pagename #{user.username}
+                            a(href=`/${user.username}`)
+                                .pagename #{user.username}
                             .username #{user.name}
                         .bluebtn.followbtn2 Follow

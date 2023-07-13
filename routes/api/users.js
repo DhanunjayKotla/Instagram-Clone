@@ -1,5 +1,14 @@
 const express = require('express')
 const multer = require('multer')
+const alert = require('alert');
+
+var jsdom = require('jsdom');
+const { JSDOM } = jsdom;
+const { window } = new JSDOM();
+const { document } = (new JSDOM('')).window;
+global.document = document;
+var $ = require('jquery')(window);
+
 const User = require('../../schemas/userSchema');
 
 const firebase = require("firebase/app")
@@ -8,7 +17,21 @@ const config = require("../../firebaseconfig")
 
 firebase.initializeApp(config);
 const storage = firebasestorage.getStorage();
-const upload = multer({ storage: multer.memoryStorage() });
+const whitelist = [
+    'image/png',
+    'image/jpeg',
+    'image/jpg',
+    'image/webp'
+]
+const upload = multer({
+    storage: multer.memoryStorage(),
+    fileFilter: (req, file, cb) => {
+        if (!whitelist.includes(file.mimetype)) {
+            return cb(new Error('File is not allowed'))
+        }
+        cb(null, true)
+    }
+}).single('Image')
 
 const router = express.Router();
 
@@ -49,21 +72,37 @@ router.put('/updatesaved', async (req, res) => {
     res.send(user);
 })
 
-router.put('/uploadprofile', upload.single('Image'), async (req, res) => {
-    try {
-        const dateTime = giveCurrentDateTime();
-        const storageRef = firebasestorage.ref(storage, `files/${req.file.originalname + " " + dateTime}`);
-        const metadata = {
-            contentType: req.file.mimetype,
-        };
-        const snapshot = await firebasestorage.uploadBytesResumable(storageRef, req.file.buffer, metadata);
-        const downloadURL = await firebasestorage.getDownloadURL(snapshot.ref);
-        var user = await User.findByIdAndUpdate(req.cookies.user._id, { profilePic: downloadURL }, { new: true });
-        res.cookie('user', user, { httpOnly: true });
-        res.send(user);
-    } catch (err) {
-        console.log(err)
-    }
+router.put('/uploadprofile', async (req, res) => {
+
+    upload(req, res, async function (err) {
+        if (err instanceof multer.MulterError) {
+            $('.loading').css({ display: 'none' })
+            alert(`${err.message}. Refresh page!`);
+        } else if (err) {
+            $('.loading').css({ display: 'none' })
+            alert(`${err.message}. Refresh page!`)
+        } else {
+            var profpic = req.cookies.user.profilePic;
+            try {
+                const dateTime = giveCurrentDateTime();
+                const storageRef = firebasestorage.ref(storage, `files/${req.file.originalname + " " + dateTime}`);
+                const metadata = {
+                    contentType: req.file.mimetype,
+                };
+                const snapshot = await firebasestorage.uploadBytesResumable(storageRef, req.file.buffer, metadata);
+                const downloadURL = await firebasestorage.getDownloadURL(snapshot.ref);
+                var user = await User.findByIdAndUpdate(req.cookies.user._id, { profilePic: downloadURL }, { new: true });
+                if (profpic != '/images/profilepic.webp') {
+                    const desertRef = firebasestorage.ref(storage, profpic);
+                    await firebasestorage.deleteObject(desertRef)
+                }
+                res.cookie('user', user, { httpOnly: true });
+                res.send(user);
+            } catch (err) {
+                console.log(err)
+            }
+        }
+    })
 })
 const giveCurrentDateTime = () => {
     const today = new Date();

@@ -1,5 +1,6 @@
 const express = require('express');
 const multer = require('multer');
+const alert = require('alert');
 const path = require('path')
 const fs = require('fs');
 const Post = require('../../schemas/postSchema');
@@ -10,7 +11,7 @@ const config = require("../../firebaseconfig")
 
 firebase.initializeApp(config);
 const storage = firebasestorage.getStorage();
-const upload = multer({ storage: multer.memoryStorage() });
+const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 20 * 1024 * 1024 } }).single('croppedImage');
 
 const router = express.Router();
 
@@ -20,36 +21,46 @@ router.get('/', (req, res) => {
         .catch(err => console.log(err.message))
 })
 
-router.post('/', upload.single('croppedImage'), async (req, res) => {
-    try {
-        const dateTime = giveCurrentDateTime();
-        const storageRef = firebasestorage.ref(storage, `files/${req.file.originalname + " " + dateTime}`);
-        const metadata = {
-            contentType: req.file.mimetype,
-        };
-        const snapshot = await firebasestorage.uploadBytesResumable(storageRef, req.file.buffer, metadata);
-        const downloadURL = await firebasestorage.getDownloadURL(snapshot.ref);
+router.post('/', (req, res) => {
 
-        var contentType
-        if (req.file.mimetype.startsWith('image')) {
-            contentType = 'image'
-        } else if (req.file.mimetype.startsWith('video')) {
-            contentType = 'video'
+    upload(req, res, async function (err) {
+        if (err instanceof multer.MulterError) {
+            $('.loading').css({ display: 'none' })
+            alert(`${err.message}. Refresh page!`);
+        } else if (err) {
+            $('.loading').css({ display: 'none' })
+            alert(`${err.message}. Refresh page!`)
+        } else {
+            try {
+                const dateTime = giveCurrentDateTime();
+                const storageRef = firebasestorage.ref(storage, `files/${req.file.originalname + " " + dateTime}`);
+                const metadata = {
+                    contentType: req.file.mimetype,
+                };
+                const snapshot = await firebasestorage.uploadBytesResumable(storageRef, req.file.buffer, metadata);
+                const downloadURL = await firebasestorage.getDownloadURL(snapshot.ref);
+
+                var contentType
+                if (req.file.mimetype.startsWith('image')) {
+                    contentType = 'image'
+                } else if (req.file.mimetype.startsWith('video')) {
+                    contentType = 'video'
+                }
+
+                Post.create({
+                    postPic: downloadURL,
+                    caption: req.body.caption,
+                    location: req.body.location,
+                    postedBy: req.cookies.user._id,
+                    contentType: contentType
+                }).catch(err => console.log(err.message));
+
+                res.send('success')
+            } catch (err) {
+                console.log(err.message)
+            }
         }
-
-        Post.create({
-            postPic: downloadURL,
-            caption: req.body.caption,
-            location: req.body.location,
-            postedBy: req.cookies.user._id,
-            contentType: contentType
-        }).catch(err => console.log(err.message));
-
-        res.send('success')
-    } catch (err) {
-        console.log(err.message)
-    }
-
+    })
 })
 const giveCurrentDateTime = () => {
     const today = new Date();

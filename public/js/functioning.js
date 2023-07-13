@@ -271,6 +271,7 @@ $('.popcontentholder').on('change', '#postimginput', function (e) {
 
 $('.popcontentholder').on('click', '.sharebtn', function () {
     $('.loading').css({ display: 'flex' })
+    console.log(srctype);
 
     var caption = $('.postcaption').val()
     var location = $('.postlocation').val()
@@ -361,15 +362,15 @@ function displaypostpop(result) {
                                         <div class="postedcontent">${src}</div>
                                         <div class="commentsbox">
                                             <div class="postedby">
-                                                <div class="prof"><img src='${result.postedBy.profilePic}' alt=""></div>
+                                                <a href='/${result.postedBy.username}'><div class="prof"><img src='${result.postedBy.profilePic}' alt=""></div></a>
                                                 <a href='/${result.postedBy.username}'><span class="pagename">${result.postedBy.username}</span></a>&nbsp&nbsp&#8226;&nbsp&nbsp${followb}
                                                 <img width="20" height="20" src="https://img.icons8.com/ios-glyphs/30/more.png" alt="more"/>
                                             </div>
                                             <div class="commentscontainer">
                                                 <div class="comment posttextbox">
-                                                    <div class="prof"><img src='${result.postedBy.profilePic}' alt=""></div>
+                                                    <a href='/${result.postedBy.username}'><div class="prof"><img src='${result.postedBy.profilePic}' alt=""></div></a>
                                                     <div>
-                                                        <div class="posttext"><span>${result.postedBy.username}</span> ${result.caption}</div>
+                                                        <div class="posttext"><a href='/${result.postedBy.username}'><span>${result.postedBy.username}</span></a> ${result.caption}</div>
                                                         <div class="commentfooter"><span>${timeDisplay(result.createdAt)}</span><span>Reply</span></div>
                                                     </div>
                                                 </div>
@@ -436,7 +437,7 @@ function prependcomment(result) {
 
 function createcommenthtml(result) {
     return `<div class="comment">
-                <div class="prof"><img src='${result.postedBy.profilePic}' alt=""></div>
+                <a href='/${result.postedBy.username}'><div class="prof"><img src='${result.postedBy.profilePic}' alt=""></div></a>
                 <div>
                     <div class="posttext"><a href='/${result.postedBy.username}'><span>${result.postedBy.username}</span></a> ${result.content}</div>
                     <div class="commentfooter"><span>${timeDisplay(result.createdAt)}</span><span>0 likes</span><span>Reply</span></div>
